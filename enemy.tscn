@@ -1,0 +1,146 @@
+[gd_scene load_steps=17 format=3 uid="uid://bjwoe3x35ofe6"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_1y3ie"]
+[ext_resource type="Texture2D" uid="uid://biuqg3spwleb5" path="res://assets/mugmen wego mini figure enemy.png" id="2_7d865"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q34h5"]
+atlas = ExtResource("2_7d865")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyppg"]
+atlas = ExtResource("2_7d865")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bsqd"]
+atlas = ExtResource("2_7d865")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cd3d"]
+atlas = ExtResource("2_7d865")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq06a"]
+atlas = ExtResource("2_7d865")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlky3"]
+atlas = ExtResource("2_7d865")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miruu"]
+atlas = ExtResource("2_7d865")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g06qp"]
+atlas = ExtResource("2_7d865")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5i13"]
+atlas = ExtResource("2_7d865")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfm8t"]
+atlas = ExtResource("2_7d865")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebo2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q34h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyppg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bsqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cd3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq06a")
+}],
+"loop": true,
+"name": &"squashed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlky3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miruu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g06qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5i13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfm8t")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dx2q"]
+size = Vector2(59, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tr4k"]
+size = Vector2(82, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an1tx"]
+size = Vector2(36, 2.5)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 487
+script = ExtResource("1_1y3ie")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.90735e-06, -1.90735e-06)
+scale = Vector2(2.875, 2.875)
+sprite_frames = SubResource("SpriteFrames_ebo2f")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(1, 45.5)
+shape = SubResource("RectangleShape2D_4dx2q")
+debug_color = Color(0.34902, 0.611765, 0.282353, 0.419608)
+
+[node name="SidesChecker" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 481
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SidesChecker"]
+position = Vector2(2, 15)
+shape = SubResource("RectangleShape2D_4tr4k")
+debug_color = Color(0.694118, 0.286275, 0.992157, 0.419608)
+
+[node name="TopChecker" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 481
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopChecker"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_an1tx")
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+collision_mask = 2
+hit_from_inside = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CoolDownTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="body_entered" from="SidesChecker" to="." method="_on_sides_checker_body_entered"]
+[connection signal="body_entered" from="TopChecker" to="." method="_on_top_checker_body_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]

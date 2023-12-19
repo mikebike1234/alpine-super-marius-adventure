@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cnbyfpe5i1ts"]
+
+[ext_resource type="Texture2D" uid="uid://bwot4c3yco3uy" path="res://assets/icon.svg" id="1_pdfwh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knx66"]
+atlas = ExtResource("1_pdfwh")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33weo"]
+atlas = ExtResource("1_pdfwh")
+region = Rect2(0, 64, 128, 64)
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"squashed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knx66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33weo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

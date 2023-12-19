@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://cd7iwmbse0yje"]
+
+[ext_resource type="Script" path="res://player_2.gd" id="1_qms73"]
+[ext_resource type="Texture2D" uid="uid://cch1y2uynb5ix" path="res://assets/wego mini figure.png" id="2_ty3pe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sydh8"]
+atlas = ExtResource("2_ty3pe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bc5h"]
+atlas = ExtResource("2_ty3pe")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwiil"]
+atlas = ExtResource("2_ty3pe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qmih"]
+atlas = ExtResource("2_ty3pe")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1lnkk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sydh8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bc5h")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwiil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qmih")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4vim"]
+size = Vector2(69, 114)
+
+[node name="Player2" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 511
+script = ExtResource("1_qms73")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -5.37502)
+scale = Vector2(2.20703, 3.66406)
+sprite_frames = SubResource("SpriteFrames_1lnkk")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(1.5, -4)
+shape = SubResource("RectangleShape2D_b4vim")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -26.0
+offset_top = -92.0
+offset_right = 30.0
+offset_bottom = -66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Wowigi"

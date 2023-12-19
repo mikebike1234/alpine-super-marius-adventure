@@ -1,0 +1,211 @@
+[gd_scene load_steps=17 format=3 uid="uid://lwoy1bf8h3j0"]
+
+[ext_resource type="Script" path="res://level_1.gd" id="1_hic0a"]
+[ext_resource type="Texture2D" uid="uid://2b6vmn1fd1a1" path="res://assets/wego mini figure world tiles (4).png" id="2_4jeqs"]
+[ext_resource type="AudioStream" uid="uid://c18pcyapn7q4d" path="res://assets/bounce-114024.mp3" id="3_4wfna"]
+[ext_resource type="PackedScene" uid="uid://d2lvp41r03p3u" path="res://player.tscn" id="3_jlco7"]
+[ext_resource type="PackedScene" uid="uid://hw1defnark3e" path="res://flag.tscn" id="5_nuawr"]
+[ext_resource type="PackedScene" uid="uid://dgcglr57yvv8f" path="res://coin.tscn" id="6_n7n3y"]
+[ext_resource type="PackedScene" uid="uid://dcgypyts1elqx" path="res://player_3.tscn" id="7_5x5ov"]
+[ext_resource type="PackedScene" uid="uid://lh6snlia67ik" path="res://hud.tscn" id="7_mkven"]
+[ext_resource type="PackedScene" uid="uid://bjwoe3x35ofe6" path="res://enemy.tscn" id="8_e1cel"]
+[ext_resource type="PackedScene" uid="uid://ciwru0jvvrbyf" path="res://main_background.tscn" id="9_jrvu2"]
+[ext_resource type="PackedScene" uid="uid://cd7iwmbse0yje" path="res://player_2.tscn" id="10_vd218"]
+[ext_resource type="PackedScene" uid="uid://cjtmfrive4ke8" path="res://cam.tscn" id="11_qp8ri"]
+[ext_resource type="PackedScene" uid="uid://bakosutelu6vo" path="res://player_4.tscn" id="15_iqu2c"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4u7yc"]
+texture = ExtResource("2_4jeqs")
+texture_region_size = Vector2i(128, 128)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-65.5, 12.25, -65.5, 63.5, 67, 63, 68, 12.25)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-70.875, 12, -65.0538, 62.2254, 65.7609, 62.2254, 67.75, 12.125)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60.8112, -64.3467, -63.6396, 64.3467, 63.6396, 60.1041, 59.397, -62.9325)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-63.6396, -64.3467, -62.2254, 58.6899, 59.397, 58.6899, 57.9828, -62.9325)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-62.2254, -70.0036, -60.8112, 61.5183, 59.397, 60.1041, 60.8112, -65.7609)
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-59.397, 55.8614, -67.8822, 19.0919, 70.7107, 19.0919, 60.8112, 60.1041)
+0:3/0/physics_layer_0/polygon_1/points = PackedVector2Array(-64, -67, -60, -63, 56.5685, -55.8614, 59.397, -67.1751)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60.8112, -62.9325, -62, 59, 58, 61, 64, -63)
+2:2/0/physics_layer_0/polygon_1/points = PackedVector2Array(74, -27, 63, -28, 55.5, 38.5)
+2:2/0/physics_layer_0/polygon_2/points = PackedVector2Array(-58.5, -28.5, -58.5, -20.5, -57, 32, -72.5, -28.5)
+
+[sub_resource type="TileSet" id="TileSet_4oem5"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_4u7yc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkyuv"]
+size = Vector2(4449, 103.5)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_hic0a")
+
+[node name="TileMap" type="TileMap" parent="."]
+light_mask = 2
+visibility_layer = 13
+tile_set = SubResource("TileSet_4oem5")
+cell_quadrant_size = 128
+collision_animatable = true
+format = 2
+layer_0/tile_data = PackedInt32Array(1900549, 0, 1, 1900557, 0, 1, 1900565, 0, 1, 1900573, 0, 1, 1900581, 0, 1, 1900589, 0, 1, 1966077, 0, 1, 983085, 0, 1, 327701, 0, 1, 327709, 0, 1, 1900597, 0, 3, 1900605, 0, 1, 1376309, 131072, 1, 327693, 0, 1, 1900613, 0, 1, 1900621, 0, 1, 1900629, 0, 1, 1900637, 0, 1, 1900645, 0, 1, 1638514, 131072, 2, 1114226, 131072, 2, 589938, 131072, 2, 65650, 131072, 2, -458638, 131072, 2, -982926, 131072, 2, -1507214, 0, 1, -1507206, 0, 1, -1507198, 0, 1, 983093, 0, 1, 7208932, 0, 1, 7208940, 0, 1, 7208948, 0, 1, 7208956, 0, 1, 7143428, 0, 1, 7143436, 0, 1, 7143444, 0, 1)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4wfna")
+autoplay = true
+
+[node name="Player" parent="." instance=ExtResource("3_jlco7")]
+position = Vector2(-17, 414)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = -2000
+limit_top = -2000
+limit_right = 7000
+limit_bottom = 2000
+editor_draw_limits = true
+
+[node name="Fallzone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fallzone"]
+position = Vector2(2296.5, 718.25)
+shape = SubResource("RectangleShape2D_wkyuv")
+
+[node name="Flag" parent="." instance=ExtResource("5_nuawr")]
+position = Vector2(2037, -450)
+
+[node name="Flag2" parent="." instance=ExtResource("5_nuawr")]
+position = Vector2(237, 1579)
+
+[node name="HUD" parent="." instance=ExtResource("7_mkven")]
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("6_n7n3y")]
+position = Vector2(1468, 428)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("6_n7n3y")]
+position = Vector2(1559, 402)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("6_n7n3y")]
+position = Vector2(1142, 421)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("6_n7n3y")]
+position = Vector2(1269, 437)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("6_n7n3y")]
+position = Vector2(1365, 416)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_e1cel")]
+position = Vector2(319, 32)
+
+[node name="MainBackground" parent="." instance=ExtResource("9_jrvu2")]
+
+[node name="Cam" parent="." instance=ExtResource("11_qp8ri")]
+
+[node name="Player2" parent="." instance=ExtResource("10_vd218")]
+position = Vector2(151, 391)
+
+[node name="Player3" parent="." instance=ExtResource("7_5x5ov")]
+position = Vector2(276, 413)
+
+[node name="Player4" parent="." instance=ExtResource("15_iqu2c")]
+position = Vector2(472, 415)
+
+[node name="TodThruLabel" type="Label" parent="."]
+offset_left = 675.0
+offset_top = 317.0
+offset_right = 791.0
+offset_bottom = 407.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "Tod can go
+ thru full red 
+blocks."
+horizontal_alignment = 2
+
+[node name="ClimbUpLabel" type="Label" parent="."]
+offset_left = 1583.0
+offset_top = 250.0
+offset_right = 1731.0
+offset_bottom = 302.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "You can climb up 
+these walls    ------->"
+
+[node name="CoinsEqualLabel" type="Label" parent="."]
+offset_left = 938.0
+offset_top = 159.0
+offset_right = 1156.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "5 Coins = Extra Life"
+
+[node name="GetToLabel" type="Label" parent="."]
+offset_left = 1493.0
+offset_top = -510.0
+offset_right = 1720.0
+offset_bottom = -432.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Touch The Flag To
+ Beat The Game!"
+
+[node name="EnemyBadLabel" type="Label" parent="."]
+offset_left = 247.0
+offset_top = -97.0
+offset_right = 420.0
+offset_bottom = -31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Hit The Top of An
+Enemy To Kill It"
+
+[node name="SecretsLabel" type="Label" parent="."]
+offset_left = -495.0
+offset_top = 1497.0
+offset_right = -304.0
+offset_bottom = 1549.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Sometimes There Will
+ Be Secrets In The Game!"
+
+[node name="DontFallLabel" type="Label" parent="."]
+offset_left = -259.0
+offset_top = 393.0
+offset_right = -185.0
+offset_bottom = 419.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Dont Fall!"
+
+[connection signal="body_entered" from="Fallzone" to="." method="_on_fallzone_body_entered"]

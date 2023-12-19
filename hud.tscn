@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://lh6snlia67ik"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_gsqrp"]
+[ext_resource type="Texture2D" uid="uid://bqly7golf2p7o" path="res://assets/wego coin.png" id="2_mbv5m"]
+[ext_resource type="FontFile" uid="uid://b4h6ynb0i8ksl" path="res://assets/Titillium-Bold (1).otf" id="3_r23b2"]
+[ext_resource type="Texture2D" uid="uid://cch1y2uynb5ix" path="res://assets/wego mini figure.png" id="4_kjlo7"]
+[ext_resource type="AudioStream" uid="uid://cubhnttxxrfpx" path="res://sounds/powerUp8.ogg" id="4_tp0go"]
+[ext_resource type="AudioStream" uid="uid://cjumpy60hr7fy" path="res://sounds/error_007.ogg" id="5_cypqm"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_gsqrp")
+
+[node name="CoinsPanel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 171.0
+offset_bottom = 87.0
+
+[node name="CoinPicture" type="Sprite2D" parent="CoinsPanel"]
+position = Vector2(32.0001, 33)
+scale = Vector2(1.4375, 1.4375)
+texture = ExtResource("2_mbv5m")
+hframes = 2
+vframes = 3
+
+[node name="XLabel" type="Label" parent="CoinsPanel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 19.0
+offset_right = 104.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("3_r23b2")
+theme_override_font_sizes/font_size = 32
+text = "x"
+
+[node name="ScoreLabel" type="Label" parent="CoinsPanel"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 9.0
+offset_right = 139.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("3_r23b2")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LivesPanel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = 985.0
+offset_top = 21.0
+offset_right = 1135.0
+offset_bottom = 87.0
+
+[node name="LivesPicture" type="Sprite2D" parent="LivesPanel"]
+position = Vector2(33, 33)
+scale = Vector2(1.22266, 1.17759)
+texture = ExtResource("4_kjlo7")
+hframes = 2
+vframes = 3
+
+[node name="XLabel" type="Label" parent="LivesPanel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 19.0
+offset_right = 104.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("3_r23b2")
+theme_override_font_sizes/font_size = 32
+text = "x"
+
+[node name="LivesLabel" type="Label" parent="LivesPanel"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 9.0
+offset_right = 139.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("3_r23b2")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tp0go")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cypqm")

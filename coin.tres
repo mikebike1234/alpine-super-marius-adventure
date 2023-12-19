@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://da1fk0cido37g"]
+
+[ext_resource type="Texture2D" uid="uid://bqly7golf2p7o" path="res://assets/wego coin.png" id="1_xle0s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6y3f"]
+atlas = ExtResource("1_xle0s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gw61"]
+atlas = ExtResource("1_xle0s")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d73j"]
+atlas = ExtResource("1_xle0s")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcc2c"]
+atlas = ExtResource("1_xle0s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enpe1"]
+atlas = ExtResource("1_xle0s")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv3uc"]
+atlas = ExtResource("1_xle0s")
+region = Rect2(32, 64, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6y3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gw61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d73j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcc2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enpe1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv3uc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://bakosutelu6vo"]
+
+[ext_resource type="Texture2D" uid="uid://cyqlm8x7s3ynf" path="res://assets/wego mini figure player 4 use this one.png" id="1_jl68s"]
+
+[sub_resource type="GDScript" id="GDScript_ibwf3"]
+resource_name = "player4script"
+script/source = "extends CharacterBody2D
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -800.0
+
+var gravity = 1200
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"jump_4\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+	if Input.is_action_just_pressed(\"crouchwalk\"):
+		$AnimatedSprite2D.play(\"crouch\")
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis(\"move_left_4\", \"move_right_4\")
+	if direction:
+		$AnimatedSprite2D.play(\"walk\")
+		velocity.x = direction * SPEED
+		if direction > 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false	
+	else:
+		if is_on_floor():
+			#this will stop the player from moving left or right if it is on the floor and not pressing any keys
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			$AnimatedSprite2D.play(\"idle\")
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED * 0.03)
+	if not is_on_floor():
+		$AnimatedSprite2D.play(\"jump\")
+
+	move_and_slide()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4pax"]
+atlas = ExtResource("1_jl68s")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3me2"]
+atlas = ExtResource("1_jl68s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j143c"]
+atlas = ExtResource("1_jl68s")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjnhc"]
+atlas = ExtResource("1_jl68s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imau3"]
+atlas = ExtResource("1_jl68s")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hj1b2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4pax")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3me2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j143c")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjnhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imau3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbegy"]
+size = Vector2(133.5, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ma6v0"]
+size = Vector2(20, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgaco"]
+size = Vector2(20.5, 59)
+
+[node name="Player4" type="CharacterBody2D" groups=["player"]]
+collision_layer = 128
+collision_mask = 127
+script = SubResource("GDScript_ibwf3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.999994, 0.999999)
+scale = Vector2(4.375, 2.32031)
+sprite_frames = SubResource("SpriteFrames_hj1b2")
+animation = &"crouch"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.75, -1)
+shape = SubResource("RectangleShape2D_vbegy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -26.0
+offset_top = -81.0
+offset_right = 28.0
+offset_bottom = -55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Warius"
+
+[node name="Plowright" type="CollisionShape2D" parent="."]
+position = Vector2(50, -3)
+shape = SubResource("RectangleShape2D_ma6v0")
+one_way_collision_margin = 30.0
+
+[node name="Plowleft" type="CollisionShape2D" parent="."]
+position = Vector2(-38, 1)
+shape = SubResource("RectangleShape2D_qgaco")
